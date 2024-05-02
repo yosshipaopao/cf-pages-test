@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import { authOptions } from "@/app/api/auth/[...nextauth]";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import type { NextPage } from 'next'
 import React, { useState } from 'react';
 
@@ -11,6 +10,8 @@ const Home: NextPage = () => {
   const { data: session } = useSession();
   const login = () => {
     alert("login");
+    // データをcookieに入れる
+    signIn();
   }
   const submit = () => {
     alert("submit");
