@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import { authOptions } from "@/app/api/auth/[...nextauth]";
-import { useSession } from "next-auth/react";
+import { signIn, useSession } from "next-auth/react";
 import type { NextPage } from 'next'
 import React, { useState } from 'react';
 
@@ -11,6 +10,8 @@ const Home: NextPage = () => {
   const { data: session } = useSession();
   const login = () => {
     alert("login");
+    // データをcookieに入れる
+    signIn();
   }
   const submit = () => {
     alert("submit");
@@ -76,15 +77,15 @@ const Home: NextPage = () => {
           メイン作業(18:00~26:00)に何時頃から参加できるか
         </span>
         <div className="m-10">
-          <select className="select select-primary w-full max-w-xs">
-            <option disabled selected>
+          <select className="select select-primary w-full max-w-xs" defaultValue="default">
+            <option disabled value="default">
               回答を選択
             </option>
-            <option>18:00~</option>
-            <option>19:00~</option>
-            <option>20:00~</option>
-            <option>21:00~</option>
-            <option>22:00~</option>
+            <option value="18">18:00~</option>
+            <option value="19">19:00~</option>
+            <option value="20">20:00~</option>
+            <option value="21">21:00~</option>
+            <option value="22">22:00~</option>
           </select>
         </div>
       </div>
