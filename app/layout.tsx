@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "@/app/globals.css";
 import SessionProvider from "@/app/components/SessionProvider";
+import { CookiesProvider } from 'next-client-cookies/server';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +20,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <SessionProvider>
+        <CookiesProvider>
           {children}
+        </CookiesProvider>
         </SessionProvider>
       </body>
     </html>

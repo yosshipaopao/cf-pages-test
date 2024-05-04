@@ -1,39 +1,37 @@
 "use client";
-import Image from "next/image";
-import { signIn, signOut, useSession } from "next-auth/react";
+
 import type { NextPage } from 'next'
-import React, { useState } from 'react';
+
+import Image from "next/image";
+
+import { signIn, signOut, useSession } from "next-auth/react";
+import { useCookies } from 'next-client-cookies';
 
 export const runtime = 'edge';
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
-  
+  const cookies = useCookies();
   const login = () => {
-    alert("login");
-    // データをcookieに入れる
     signIn();
   }
   const logout = () => {
-    alert("logout");
-    // データをcookieに入れる
     signOut();
   }
   const submit = () => {
-    alert("submit");
   }
   let component;
   if (session) {
     const { user } = session;
     component = (
-      <div className="flex items-center flex-row-reverse">
+      <div className="flex items-center">
         <button onClick={logout} className="btn btn-outline btn-primary">Logout</button>
-        <span className="p-4 label-text">{user?.name || 'NaN'}</span>
-        <div className="avatar">
+        <div className="avatar mx-5">
           <div className="w-10 rounded-full">
             <Image src={user?.image || ''} alt={user?.name || ''} width={100} height={100}/>
           </div>
         </div>
+        <span className="label-text">{user?.name || 'NaN'}</span>
       </div>
     );
 
@@ -49,6 +47,7 @@ const Home: NextPage = () => {
     <>
     <div className="bgimage"></div>
     <main className="mx-5 my-20 md:mx-10 lg:mx-80 glass rounded-xl" data-theme="light">
+      <form id="mainform">
       <div className="p-5">
         {component}
       </div>
@@ -218,8 +217,9 @@ const Home: NextPage = () => {
         {component}
       </div>
       <div className="p-5">
-        <button className="btn btn-wide btn-outline btn-primary" disabled>Submit</button>
+        <button className="btn btn-wide btn-outline btn-primary" disabled type='submit'>Submit</button>
       </div>
+      </form>
     </main>
     </>
   );
