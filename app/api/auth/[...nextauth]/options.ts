@@ -3,10 +3,11 @@ import type {NextAuthConfig} from "next-auth";
 import DiscordProvider from "next-auth/providers/discord";
 
 const authOptions: NextAuthConfig = {
+  secret: process.env.SECRET,
   providers: [
     DiscordProvider({
-      clientId: process.env.DISCORD_CLIENT_ID!,
-      clientSecret: process.env.DISCORD_CLIENT_SECRET!,
+      clientId: process.env.DISCORD_CLIENT_ID,
+      clientSecret: process.env.DISCORD_CLIENT_SECRET,
     })
   ]
 };
