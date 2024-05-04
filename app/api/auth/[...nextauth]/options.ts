@@ -4,6 +4,7 @@ import DiscordProvider from "next-auth/providers/discord";
 
 const authOptions: NextAuthConfig = {
   secret: process.env.SECRET,
+  trustHost: true,
   providers: [
     DiscordProvider({
       clientId: process.env.DISCORD_CLIENT_ID,
