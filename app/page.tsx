@@ -1,6 +1,6 @@
 "use client";
 import Image from "next/image";
-import { signIn, useSession } from "next-auth/react";
+import { signIn, signOut, useSession } from "next-auth/react";
 import type { NextPage } from 'next'
 import React, { useState } from 'react';
 
@@ -8,28 +8,35 @@ export const runtime = 'edge';
 
 const Home: NextPage = () => {
   const { data: session } = useSession();
+  
   const login = () => {
     alert("login");
     // データをcookieに入れる
     signIn();
   }
+  const logout = () => {
+    alert("logout");
+    // データをcookieに入れる
+    signOut();
+  }
   const submit = () => {
     alert("submit");
   }
-  const [theme, setTheme] = useState("dark");
-  const themeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    if(theme=="light")setTheme("dark")
-    if(theme=="dark")setTheme("light")
-  }
   let component;
   if (session) {
+    const { user } = session;
     component = (
-      <div className="avatar">
-        <div className="w-24 rounded-full">
-          <img src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+      <div className="flex items-center flex-row-reverse">
+        <button onClick={logout} className="btn btn-outline btn-primary">Logout</button>
+        <span className="p-4 label-text">{user?.name || 'NaN'}</span>
+        <div className="avatar">
+          <div className="w-10 rounded-full">
+            <Image src={user?.image || ''} alt={user?.name || ''} width={100} height={100}/>
+          </div>
         </div>
       </div>
     );
+
   } else {
     component = (
       <button onClick={login} className="btn btn-wide btn-outline btn-primary">
@@ -39,12 +46,9 @@ const Home: NextPage = () => {
   }
 
   return (
-    <main className="p-40" data-theme={theme}>
-      <div className="form-control w-52">
-        <label className="cursor-pointer label">
-          <input type="checkbox" className="toggle toggle-primary" onChange={themeChange}/>
-        </label>
-      </div>
+    <>
+    <div className="bgimage"></div>
+    <main className="mx-5 my-20 md:mx-10 lg:mx-80 glass rounded-xl" data-theme="light">
       <div className="p-5">
         {component}
       </div>
@@ -66,6 +70,7 @@ const Home: NextPage = () => {
           <input
             type="number"
             placeholder="年齢"
+            min="13" step="1" max="100"
             className="input input-bordered input-primary w-full max-w-xs"
           />
         </div>
@@ -183,6 +188,7 @@ const Home: NextPage = () => {
           <input
             type="file"
             className="file-input file-input-bordered file-input-primary w-full max-w-xs"
+            multiple
           />
         </div>
       </div>
@@ -215,6 +221,7 @@ const Home: NextPage = () => {
         <button className="btn btn-wide btn-outline btn-primary" disabled>Submit</button>
       </div>
     </main>
+    </>
   );
 }
 export default Home;

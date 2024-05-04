@@ -1,3 +1,16 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.bgimage {
+  z-index: 0;
+  margin: 0;
+  padding: 0;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  background-image: url("https://cdn.discordapp.com/attachments/1180717712872312942/1214198262190444655/image.png?ex=6636dc80&is=66358b00&hm=8ab300d2c8a2d462a43242691ef9383d1503f97d1231b4764dd0d876fa81c038&");
+  position: fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
