@@ -9,7 +9,7 @@
   top: 0;
   width: 100vw;
   height: 100vh;
-  background-image: url($lib/images/bgimage.png);;
+  background-image: url(/images/bgimage.png);;
   position: fixed;
   background-repeat: no-repeat;
   background-size: cover;
