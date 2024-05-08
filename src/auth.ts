@@ -1,8 +1,8 @@
-import NextAuth from "next-auth";
-import type {NextAuthConfig} from "next-auth";
-import DiscordProvider from "next-auth/providers/discord";
+import { SvelteKitAuth } from '@auth/sveltekit';
+import type {SvelteKitAuthConfig} from "@auth/sveltekit";
+import DiscordProvider from '@auth/sveltekit/providers/discord';
 
-const authOptions: NextAuthConfig = {
+const authOptions: SvelteKitAuthConfig = {
   secret: process.env.SECRET,
   trustHost: true,
   providers: [
@@ -16,4 +16,4 @@ const authOptions: NextAuthConfig = {
   ]
 };
 
-export default authOptions;
+export const { handle } = SvelteKitAuth(authOptions);
