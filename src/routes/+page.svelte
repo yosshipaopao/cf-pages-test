@@ -1,5 +1,5 @@
 <script lang="ts">
-  import LoginButton from './LoginButton.svelte';
+  import LoginButton from '$lib/LoginButton.svelte';
 
 	import type { PageData } from './$types';
 </script>
