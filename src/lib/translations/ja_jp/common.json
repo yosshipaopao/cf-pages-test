@@ -1,0 +1,21 @@
+{
+  "answer_select": "回答を選択",
+  "answer_input": "回答を入力",
+  "required": "必須",
+  "search": "検索",
+
+  "ok": "Discordで必須条件、注意事項を読みました。",
+  "age": "年齢",
+  "work_start_time": "メイン作業(18:00~26:00)に何時頃から参加できるか",
+  "working_time": "2で記述した時間帯から具体的に何時間来れるか",
+  "skill": "得意な分野",
+  "skill_work": "作業",
+  "skill_deco": "建築",
+  "skill_dev": "回路",
+  "mods": "Tweakeroo・Litematica・Item scroller・MiniHUDそれぞれについて知っている機能を記述",
+  "pc_spec": "PCスペック",
+  "feature": "これまでにした作業、作った装置、建築の画像または設計図 1つのファイル最大10MB、合計5つまで",
+  "pr": "自己PR",
+  "other": "そのほか伝えたいこと",
+  "mcid": "MCID"
+}

@@ -3,7 +3,10 @@ import { fail } from '@sveltejs/kit';
 
 export const actions = {
 	default: async (event) => {
+		const session = await event.locals.auth();
+		
 		const formData = await event.request.formData();
+		console.log(formData.keys);
 		const work_start = formData.get('work-start');
 		const work_time = formData.get('work-time');
 		const skill = formData.get('skill');
@@ -13,41 +16,23 @@ export const actions = {
 		const pr = formData.get('pr');
 		const other = formData.get('other');
 
-		// console.log('work_start', work_start);
-		// console.log('work_time', work_time);
-		// console.log('skill', skill);
-		// console.log('knowledge', knowledge);
-		// console.log('pc_spec', pc_spec);
-		// console.log('files', files);
-		// console.log('pr', pr);
-		// console.log('other', other);
-
-		const ok = true;
-
-		if (!ok) {
-			const data = {
-				work_start,
-				work_time,
-				skill,
-				knowledge,
-				pc_spec,
-				pr,
-				other
-			} as unknown as {
-				work_start: string;
-				work_time: string;
-				skill: string;
-				knowledge: string;
-				pc_spec: string;
-				pr: string;
-				other: string;
-			};
-			return fail(400, {
-				...data,
-				missing: true
-			});
+		if (
+			session?.user &&
+			work_start &&
+			work_time &&
+			skill &&
+			knowledge && 
+			pc_spec &&
+			files &&
+			pr &&
+			other
+		) {
+			console.log(session)
+			return { success: true };
 		}
+		return fail(400, {
+			missing: true
+		});
 
-		return { success: true };
 	}
 } satisfies Actions;

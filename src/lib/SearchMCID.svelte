@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { t } from '$lib/translations/translations';
   let mcid: string;
 
   let checker_data: {
@@ -16,7 +17,7 @@
 
 <input type="text" bind:value={mcid} placeholder="Steve" class="input input-bordered input-primary w-full max-w-xs" />
 <button type="button" on:click={search} class="btn btn-active btn-primary">
-  search
+  {$t("common.search")}
   <span class="material-symbols-outlined">
     search
   </span>
@@ -48,4 +49,7 @@
     </div>
     <span class="label-text">{checker_data.mcid}</span>
   </div>
+  <input type="hidden" name="mcid" required value="{checker_data.mcid}">
+{:else}
+  <input type="hidden" name="mcid" required>
 {/if}
