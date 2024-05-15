@@ -1,0 +1,21 @@
+{
+  "answer_select": "answer_select",
+  "answer_input": "answer_input",
+  "required": "required",
+  "search": "search",
+
+  "ok": "ok",
+  "age": "age",
+  "work_start_time": "work_start_time",
+  "working_time": "working_time",
+  "skill": "skill",
+  "skill_work": "skill_work",
+  "skill_deco": "skill_deco",
+  "skill_dev": "skill_dev",
+  "mods": "mods",
+  "pc_spec": "pc_spec",
+  "feature": "feature",
+  "pr": "pr",
+  "other": "other",
+  "mcid": "mcid"
+}
